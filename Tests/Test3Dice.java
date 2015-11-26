@@ -2,8 +2,10 @@
 public class Test3Dice {
 
 	private int dices;					//keeps value for dices for class
-	public Test3Dice(int diceamt){
-		dices = diceamt;
+	public Test3Dice(){
+	}
+	public Test3Dice(int dices){
+		this.dices = dices;
 	}
 	public int result(){				//returns total dice roll
 		int total = 0;
@@ -12,5 +14,9 @@ public class Test3Dice {
 			total = total + roll;
 		}
 		return total;
+	}
+	public int Throw(){
+		int roll = 1 +(int)(Math.random()*6);
+		return roll;
 	}
 }
