@@ -1,24 +1,43 @@
+import java.util.InputMismatchException;
 import java.util.Scanner;
 import java.io.*;
 public class Test3 {
 	public static void main(String[] args){
 		Scanner input = new Scanner(System.in);
-		
+		boolean continueLoop=true;
 		int dices = 0;  //Initializes how many dices for the game
-		int tries;		//Initializes how many tries the user wants to do
+		int tries=0;		//Initializes how many tries the user wants to do
 		int range=0;	//represents upper and lower range. 1 is lower and 2 is upper
 		String Upper = "Upper half";
 		String Lower = "Lower half";
 		
-		
+		do{
+			try{
+				continueLoop=true;
 		System.out.println("Hello we are going to play a game. Please enter in the number of times you would like to play:");
 		tries = input.nextInt();
+		continueLoop = false;
+			}catch (Exception e){
+				System.out.println("Sorry, the entry you put in was not a number");
+				input.nextLine();
+				}
+			}while(continueLoop);
+		continueLoop=true;
 		int[] score = new int[tries];			//keeps track of user score
 		int[] Numguess = new int[tries];		//keeps track of user guess
 		int[] roll = new int[tries];			//keeps track of computer rolls
 		String[] guess = new String[tries];		//represents user guess in string form
+		do{
+			try{
+				continueLoop=true;
 		System.out.println("Please enter the number of dice you would like to be rolled");
 		dices = input.nextInt();				//user assigns how many dices
+		continueLoop=false;
+			}catch (Exception e){
+				System.out.println("Sorry, the entry you put in was not a number");
+				input.nextLine();
+				}
+		}while(continueLoop);
 		Test3Dice CompRoll = new Test3Dice(tries);	//constructor takes how many dices.
 		for (int i=0; i<tries; i++){
 			roll[i]= CompRoll.result();
@@ -35,9 +54,19 @@ public class Test3 {
 				System.out.println("In this game you will enter high or low to guess whether the dice rolled a total in the high range or "
 					+ "low range. \nThe low range represents the bottom half of possible rolls and the upper represents the upper half.\n");
 			}
-			System.out.println("Press 1 for low range and 2 for upper range:");
-			System.out.printf("roll:%d, #dice:%d, range:%d",roll[i],dices,range);		//for debug
-			Numguess[i]= input.nextInt();												//user enters answer
+															//user enters answer
+			do{
+				try{
+					continueLoop=true;
+					System.out.println("Press 1 for low range and 2 for upper range:");
+					System.out.printf("roll:%d, #dice:%d, range:%d",roll[i],dices,range);		//for debug
+					Numguess[i]= input.nextInt();
+					continueLoop=false;
+			}catch (Exception e){
+				System.out.println("Sorry, the entry you put in was not a number");
+				input.nextLine();
+				}
+			}while(continueLoop);
 			if (Numguess[i] == 1){										//if statement assigns user answer to string form
 				guess[i]= Lower;
 			}
