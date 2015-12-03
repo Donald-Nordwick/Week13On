@@ -1,11 +1,19 @@
+import java.io.IOException;
 
 public class Test3Dice {
 
 	private int dices;					//keeps value for dices for class
 	public Test3Dice(){
 	}
-	public Test3Dice(int dices){
-		this.dices = dices;
+	public Test3Dice(int dices) throws IOException{
+		
+		if ( dices<=0){
+			throw new IOException();
+		}
+		else{
+			this.dices = dices;		
+			}
+		
 	}
 	public int result(){				//returns total dice roll
 		int total = 0;
